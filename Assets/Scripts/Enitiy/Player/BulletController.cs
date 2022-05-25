@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-	private Rigidbody2D rigi;
 	[SerializeField] private float speed = 10;
-	private void Start()
-	{
-		rigi = GetComponent<Rigidbody2D>();
-	}
+
 	private void Update()
 	{
-		transform.Translate(new Vector2.)
+		if (transform.rotation.y == 0)
+		{
+			transform.Translate(transform.right * speed * Time.deltaTime);
+		}
+		else
+		{
+			transform.Translate(transform.right * speed * -1 * Time.deltaTime);
+		}
 	}
 	private void OnTriggerEnter2D(Collider2D collision)
 	{

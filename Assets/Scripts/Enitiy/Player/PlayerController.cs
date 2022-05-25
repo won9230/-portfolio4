@@ -118,10 +118,22 @@ public class PlayerController : LivingEntity
 	{
 		if (Input.GetKeyDown(KeyCode.Z) && bulletCount <= 5)
 		{
-			GameObject t_object = objectPooling.GetQueue();
-			bulletCount++;
-			t_object.transform.position = bulletPos.position;
-			StartCoroutine(bulletEnqueue(t_object));
+			if (transform.rotation.y == 0)
+			{
+				GameObject t_object = objectPooling.GetQueue();
+				bulletCount++;
+				t_object.transform.position = bulletPos.position;
+				t_object.transform.rotation = new Quaternion(0, 0, 0, 0);
+				StartCoroutine(bulletEnqueue(t_object));
+			}
+			else
+			{
+				GameObject t_object = objectPooling.GetQueue();
+				bulletCount++;
+				t_object.transform.position = bulletPos.position;
+				t_object.transform.rotation = new Quaternion(0,180,0,0);
+				StartCoroutine(bulletEnqueue(t_object));
+			}
 		}
 	}
 	private IEnumerator bulletEnqueue(GameObject _t_object)
