@@ -139,9 +139,9 @@ public class PlayerController : LivingEntity
 		anim[0].SetBool("isJumpUp", false);
 		anim[0].SetBool("isJumpDown", true);
 	}
-	private void GroundChenk()
+	private void GroundChenk() //¹Ù´Ú Ã¼Å©
 	{
-		RaycastHit2D rayHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.01f, LayerMask.GetMask("Ground"));
+		RaycastHit2D rayHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.01f,LayerMask.GetMask("Ground"));
 		if (rayHit.collider != null)
 		{
 			isGround = true;
@@ -157,14 +157,6 @@ public class PlayerController : LivingEntity
 		if (Input.GetKeyDown(KeyCode.Z))
 		{
 			anim[0].SetTrigger("Cur_Attack");
-			//StopCoroutine(AttackCooltime(0.5f));	
-			//StartCoroutine(AttackCooltime(0.5f));	
 		}
-	}
-	private IEnumerator AttackCooltime(float cooltime)
-	{
-		isAttack = true;
-		yield return new WaitForSeconds(cooltime);
-		isAttack = false;
 	}
 }
