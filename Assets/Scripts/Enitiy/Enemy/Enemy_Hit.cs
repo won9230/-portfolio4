@@ -12,7 +12,7 @@ public class Enemy_Hit : MonoBehaviour
 		if (collision.CompareTag("Player_Attack") && !enemy.isHit)
 		{
 			Debug.Log("적이 공격에 맞음");
-			enemy.Hit(1); //플레이어 공격력(임시)
+			enemy.Hit(5); //플레이어 공격력(임시)
 			StartCoroutine(Hit_animCor());
 			collision.gameObject.SetActive(false);
 			Vector2 playerPos = collision.transform.position;
@@ -27,6 +27,10 @@ public class Enemy_Hit : MonoBehaviour
 				enemy.spriteRenderer.flipX = true;
 				enemy.gameObject.transform.DOLocalMoveX(enemy.transform.position.x+1, 0.5f);
 			}
+		}
+		if (collision.CompareTag("Enemy_EndPoint"))
+		{
+			enemy.gameObject.transform.DOMove(transform.position, 0);
 		}
 	}
 	private IEnumerator Hit_animCor()

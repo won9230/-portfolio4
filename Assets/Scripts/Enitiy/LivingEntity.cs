@@ -16,7 +16,7 @@ public class LivingEntity : MonoBehaviour
 	}
 	public void DeadEntity()
 	{
-		if(hp < 0)
+		if(hp <= 0)
 		{
 			dead = true;
 		}

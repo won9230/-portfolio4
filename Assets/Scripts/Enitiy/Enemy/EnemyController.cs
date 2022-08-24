@@ -28,6 +28,10 @@ public class EnemyController : LivingEntity
 	{
 		StopCoroutine(Enemy_Move(enemy_Attack_Cooltime));
 	}
+	private void Update()
+	{
+		DeadEnemy();
+	}
 	public void DeadEnemy()
 	{
 		DeadEntity();
@@ -35,6 +39,8 @@ public class EnemyController : LivingEntity
 		{
 			enemy_AttackRange.gameObject.SetActive(false);
 			enemy_Hit.gameObject.SetActive(false);
+			StopAllCoroutines();
+			anim.SetTrigger("Dead");
 		} 
 	}
 	private IEnumerator Enemy_Move(float coolTime)
@@ -64,6 +70,11 @@ public class EnemyController : LivingEntity
 			}
 			yield return new WaitForSeconds(coolTime);
 		}
+	}
+	IEnumerator DestoryEnemy()
+	{
+		yield return new WaitForSeconds(3f);
+		Destroy(transform.gameObject);
 	}
 	public void StopMove() //플레이어 추적하기 전에 멈추기
 	{

@@ -37,6 +37,16 @@ public class PlayerController : LivingEntity
 		Jump();
 		PlayerAttack();
 		GroundChenk();
+		DeadPlayer();
+	}
+	public void DeadPlayer()
+	{
+		DeadEntity();
+		if (dead)
+		{
+			anim[0].SetTrigger("Dead");
+			dead = false;
+		}
 	}
 	private void MovePlayer() //플레이어 이동
 	{
